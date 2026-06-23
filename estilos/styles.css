@@ -1,0 +1,1719 @@
+/* =========================
+   RESET GENERAL
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+ 
+html {
+  scroll-behavior: smooth;
+}
+ 
+body {
+  font-family: 'Montserrat', Arial, sans-serif;
+  background: #0a0404;
+  color: #f5f5f5;
+  line-height: 1.6;
+}
+ 
+/* Grain overlay para textura de lujo */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.35;
+}
+ 
+/* =========================
+   VARIABLES
+========================= */
+:root {
+  --color-primary: #7b1123;
+  --color-primary-light: #a61b34;
+  --color-secondary: #d4af37;
+  --color-secondary-dim: rgba(212, 175, 55, 0.15);
+  --color-dark: #0a0404;
+  --color-dark-soft: #141010;
+  --color-dark-card: #1a1212;
+  --color-light: #f5f0eb;
+  --color-gray: #b0a89e;
+  --color-border: rgba(255, 255, 255, 0.07);
+  --color-border-gold: rgba(212, 175, 55, 0.2);
+  --shadow-soft: 0 8px 30px rgba(0, 0, 0, 0.3);
+  --shadow-strong: 0 20px 60px rgba(0, 0, 0, 0.5);
+  --shadow-gold: 0 8px 30px rgba(123, 17, 35, 0.2);
+  --radius: 16px;
+  --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  --max-width: 1200px;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Montserrat', Arial, sans-serif;
+}
+ 
+/* =========================
+   UTILIDADES
+========================= */
+.container {
+  width: 90%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+ 
+.main-content {
+  min-height: calc(100vh - 160px);
+}
+ 
+.section {
+  padding: 90px 0;
+}
+ 
+.section h2 {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 300;
+  letter-spacing: 0.03em;
+  margin-bottom: 18px;
+  color: var(--color-light);
+  position: relative;
+}
+ 
+.section h2::after {
+  content: "";
+  display: block;
+  width: 75px;
+  height: 4px;
+  margin-top: 10px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, var(--color-secondary), var(--color-primary));
+}
+ 
+.section p {
+  max-width: 850px;
+  color: var(--color-gray);
+  font-size: 1.05rem;
+}
+ 
+.section-alt {
+  background: linear-gradient(180deg, #141414 0%, #1a1a1a 100%);
+}
+ 
+.content-section {
+  display: none;
+}
+ 
+.active-section {
+  display: block;
+}
+ 
+/* =========================
+   HEADER
+========================= */
+.header {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(8, 3, 3, 0.93);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--color-border-gold);
+}
+ 
+.nav {
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+ 
+/* Logo imagen */
+.logo-link {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+}
+ 
+.logo-img {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(1);
+  transition: var(--transition);
+}
+ 
+.logo-img:hover {
+  filter: brightness(1.15);
+}
+ 
+/* Fallback texto si no hay imagen */
+.logo-fallback {
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  font-weight: 400;
+  letter-spacing: 2px;
+  color: var(--color-light);
+  cursor: pointer;
+}
+ 
+.logo-fallback::first-letter {
+  color: var(--color-secondary);
+}
+ 
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+ 
+.menu-btn {
+  background: transparent;
+  border: none;
+  color: var(--color-gray);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  position: relative;
+  cursor: pointer;
+  transition: var(--transition);
+  padding: 4px 0;
+}
+ 
+.menu-btn::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 1px;
+  background: var(--color-secondary);
+  transition: var(--transition);
+}
+ 
+.menu-btn:hover {
+  color: var(--color-light);
+}
+ 
+.menu-btn:hover::after {
+  width: 100%;
+}
+/* =========================
+   HERO / INICIO
+========================= */
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+ 
+.hero-slider {
+  min-height: calc(100vh - 120px);
+  width: 100%;
+  position: relative;
+}
+ 
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s ease, visibility 1s ease;
+  background: #120909;
+}
+ 
+.slide.active-slide {
+  opacity: 1;
+  visibility: visible;
+  z-index: 2;
+}
+ 
+.hero-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+ 
+/* Ajuste individual de cada imagen */
+.img-slide-1 {
+  object-fit: cover;
+  object-position: center center;
+}
+ 
+.img-slide-2 {
+  object-fit: cover;
+  object-position: center center;
+}
+
+.img-slide-3 {
+  object-fit: cover;
+  object-position: center center;
+}
+ 
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgba(10, 10, 10, 0.28), rgba(10, 10, 10, 0.58)),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.62) 0%, rgba(0, 0, 0, 0.34) 40%, rgba(0, 0, 0, 0.14) 100%);
+  z-index: 2;
+}
+ 
+.hero-content-full {
+  position: relative;
+  z-index: 3;
+  min-height: calc(100vh - 120px);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+ 
+.hero-text-overlay {
+  max-width: 700px;
+  padding: 40px 0;
+}
+ 
+.hero-tag {
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  color: var(--color-secondary);
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  backdrop-filter: blur(4px);
+}
+ 
+.hero-text-overlay h2 {
+  font-family: var(--font-display);
+  font-size: 4.5rem;
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: 0.01em;
+  margin-bottom: 24px;
+  color: var(--color-light);
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
+}
+ 
+.hero-text-overlay p {
+  font-size: 1rem;
+  font-weight: 300;
+  letter-spacing: 0.03em;
+  color: rgba(245, 240, 235, 0.85);
+  max-width: 520px;
+  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+}
+ 
+/* =========================
+   FLECHAS SLIDER
+========================= */
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 4;
+  width: 52px;
+  height: 52px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.35);
+  color: white;
+  font-size: 1.6rem;
+  cursor: pointer;
+  transition: var(--transition);
+  backdrop-filter: blur(6px);
+}
+ 
+.slider-arrow:hover {
+  background: rgba(123, 17, 35, 0.75);
+}
+ 
+.slider-arrow-left {
+  left: 24px;
+}
+ 
+.slider-arrow-right {
+  right: 24px;
+}
+ 
+/* =========================
+   DOTS SLIDER
+========================= */
+.slider-dots {
+  position: absolute;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  z-index: 4;
+  display: flex;
+  gap: 10px;
+}
+ 
+.slider-dot {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.45);
+  cursor: pointer;
+  transition: var(--transition);
+}
+ 
+.slider-dot:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+ 
+.active-dot {
+  background: var(--color-secondary);
+  transform: scale(1.15);
+}
+ 
+/* =========================
+   BOTONES
+========================= */
+.btn {
+  display: inline-block;
+  padding: 13px 30px;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+  color: rgba(245, 240, 235, 0.95);
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 8px 25px rgba(123, 17, 35, 0.4);
+}
+ 
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 35px rgba(123, 17, 35, 0.5);
+  background: linear-gradient(135deg, var(--color-primary-light), var(--color-primary));
+}
+ 
+.btn:active {
+  transform: translateY(0);
+}
+ 
+/* =========================
+   NOSOTROS
+========================= */
+.about-content {
+  margin-top: 35px;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 40px;
+  align-items: center;
+}
+ 
+.about-text {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+ 
+.about-location-card {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow-soft);
+  position: relative;
+  overflow: hidden;
+}
+ 
+.about-location-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-secondary), var(--color-primary));
+}
+ 
+.location-tag {
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(212, 175, 55, 0.12);
+  color: var(--color-secondary);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+ 
+.about-location-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: var(--color-light);
+}
+ 
+.about-location-card p {
+  color: var(--color-gray);
+  margin-bottom: 18px;
+}
+ 
+.location-link {
+  display: inline-block;
+  text-decoration: none;
+  color: var(--color-light);
+  font-weight: 700;
+  transition: var(--transition);
+}
+ 
+.location-link:hover {
+  color: var(--color-secondary);
+}
+ 
+.about-map {
+  min-height: 380px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-strong);
+  background: #111;
+}
+ 
+.about-map iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 380px;
+  display: block;
+}
+ 
+/* =========================
+   CARDS
+========================= */
+.cards {
+  margin-top: 42px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+ 
+.card {
+  background: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 32px 26px;
+  box-shadow: var(--shadow-soft);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+ 
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-secondary), transparent);
+  opacity: 0.5;
+}
+ 
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-strong);
+  border-color: var(--color-border-gold);
+  background: linear-gradient(145deg, rgba(212,175,55,0.04) 0%, rgba(123,17,35,0.04) 100%);
+}
+ 
+.card h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: 12px;
+  color: var(--color-light);
+  letter-spacing: 0.02em;
+}
+ 
+.card p {
+  color: var(--color-gray);
+  font-size: 0.9rem;
+  line-height: 1.65;
+  font-weight: 300;
+}
+ 
+.card-icon {
+  color: var(--color-secondary);
+  font-size: 1.4rem;
+  margin-bottom: 16px;
+  opacity: 0.8;
+}
+ 
+.card-clickable {
+  cursor: pointer;
+}
+ 
+/* Productos grandes */
+.cards-productos {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 700px;
+}
+ 
+.card-producto {
+  padding: 40px 32px;
+  text-align: center;
+}
+ 
+.producto-icon {
+  font-size: 2.5rem;
+  margin-bottom: 18px;
+  display: block;
+}
+ 
+/* =========================
+   CONTACTO
+========================= */
+.contact-form {
+  margin-top: 35px;
+  max-width: 620px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+ 
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 16px 20px;
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--color-light);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 300;
+  outline: none;
+  transition: var(--transition);
+}
+ 
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: rgba(111, 98, 87, 0.88);
+  letter-spacing: 0.03em;
+}
+ 
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: rgba(142, 32, 56, 0.4);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(142, 32, 56, 0.08);
+}
+
+.contact-form input:hover,
+.contact-form textarea:hover {
+  border-color: rgba(142, 32, 56, 0.25);
+}
+ 
+.contact-form textarea {
+  resize: vertical;
+  min-height: 130px;
+}
+ 
+/* =========================
+   FOOTER
+========================= */
+.footer {
+  padding: 40px 0 28px;
+  border-top: 1px solid var(--color-border-gold);
+  background: rgba(5, 2, 2, 0.9);
+}
+ 
+.footer-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 28px;
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--color-border);
+}
+ 
+.footer-info p {
+  color: var(--color-gray);
+  font-size: 0.82rem;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+}
+ 
+.footer p {
+  text-align: center;
+  color: rgba(176, 168, 158, 0.45);
+  font-size: 0.78rem;
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+ 
+/* =========================
+   EFECTOS EXTRAS
+========================= */
+.section,
+.hero,
+.card,
+.btn,
+.menu-btn,
+.contact-form input,
+.contact-form textarea,
+.location-link {
+  transition: var(--transition);
+}
+
+.contact-form .btn {
+  align-self: flex-start;
+}
+ 
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 992px) {
+  .menu {
+    gap: 18px;
+  }
+ 
+  .hero-content-full {
+    justify-content: center;
+    text-align: center;
+  }
+ 
+  .hero-text-overlay {
+    max-width: 100%;
+  }
+ 
+  .hero-text-overlay h2 {
+    font-size: 3rem;
+  }
+ 
+  .hero-text-overlay p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+ 
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+ 
+@media (max-width: 768px) {
+  .nav {
+    flex-direction: column;
+    justify-content: center;
+    padding: 16px 0;
+    gap: 14px;
+  }
+ 
+  .menu {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px 20px;
+  }
+ 
+  .hero-slider {
+    min-height: 75vh;
+  }
+ 
+  .hero-content-full {
+    min-height: 75vh;
+    justify-content: center;
+    text-align: center;
+  }
+ 
+  .hero-text-overlay {
+    max-width: 100%;
+    padding: 20px 0;
+  }
+ 
+  .hero-text-overlay h2 {
+    font-size: 2.4rem;
+  }
+ 
+  .hero-text-overlay p {
+    font-size: 1.05rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+ 
+  .slider-arrow {
+    width: 42px;
+    height: 42px;
+    font-size: 1.2rem;
+  }
+ 
+  .slider-arrow-left {
+    left: 12px;
+  }
+ 
+  .slider-arrow-right {
+    right: 12px;
+  }
+ 
+  .cards {
+    grid-template-columns: 1fr;
+  }
+ 
+  .section {
+    padding: 75px 0;
+  }
+ 
+  .section h2 {
+    font-size: 1.9rem;
+  }
+ 
+  .btn {
+    padding: 13px 24px;
+  }
+ 
+  .about-content {
+    grid-template-columns: 1fr;
+  }
+ 
+  .about-map,
+  .about-map iframe {
+    min-height: 300px;
+  }
+}
+ 
+@media (max-width: 480px) {
+  .logo {
+    font-size: 1.5rem;
+  }
+ 
+  .hero-text h2 {
+    font-size: 2rem;
+  }
+ 
+  .hero-text p {
+    font-size: 0.98rem;
+  }
+ 
+  .section h2 {
+    font-size: 1.6rem;
+  }
+ 
+  .card {
+    padding: 24px 18px;
+  }
+ 
+  .contact-form input,
+  .contact-form textarea {
+    padding: 14px 15px;
+  }
+}
+/* =========================
+   DROPDOWN MENU
+========================= */
+.dropdown {
+  position: relative;
+}
+ 
+.dropdown-btn {
+  display: inline-block;
+}
+ 
+.dropdown-content {
+  position: absolute;
+  top: 120%;
+  left: 0;
+  min-width: 220px;
+  background: #141414;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  box-shadow: var(--shadow-soft);
+  padding: 10px 0;
+  display: none;
+  z-index: 2000;
+}
+ 
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+ 
+.submenu-btn,
+.submenu-toggle-btn {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: var(--color-light);
+  text-align: left;
+  padding: 12px 16px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+ 
+.submenu-btn:hover,
+.submenu-toggle-btn:hover {
+  background: rgba(212, 175, 55, 0.08);
+  color: var(--color-secondary);
+}
+ 
+/* =========================
+   SUBMENU DE VINOS
+========================= */
+.dropdown-submenu {
+  position: relative;
+}
+ 
+.dropdown-subcontent {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  min-width: 200px;
+  background: #141414;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  box-shadow: var(--shadow-soft);
+  padding: 10px 0;
+  display: none;
+  z-index: 2100;
+}
+ 
+.dropdown-submenu:hover .dropdown-subcontent {
+  display: block;
+}
+ 
+/* Flechita visual al costado de Vinos */
+.submenu-toggle-btn {
+  position: relative;
+  padding-right: 36px;
+}
+ 
+.submenu-toggle-btn::after {
+  content: "›";
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  color: var(--color-secondary);
+}
+ 
+/* =========================
+   AJUSTES VISUALES
+========================= */
+.dropdown-content .submenu-btn,
+.dropdown-content .submenu-toggle-btn {
+  display: block;
+}
+ 
+.dropdown-subcontent .submenu-btn {
+  display: block;
+  white-space: nowrap;
+}
+/* estilos bodegas reemplazados arriba */
+ 
+.vinos-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 32px;
+  align-items: start;
+  margin-top: 36px;
+}
+ 
+.vinos-sidebar {
+  position: sticky;
+  top: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: rgba(20, 10, 10, 0.7);
+  border: 1px solid var(--color-border-gold);
+  border-radius: var(--radius);
+  padding: 20px 14px;
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(8px);
+}
+ 
+.sidebar-titulo {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #8b8f96;
+  padding: 0 10px;
+  margin-bottom: 10px;
+}
+ 
+.pais-btn {
+  width: 100%;
+  padding: 12px 14px;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--color-gray);
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: var(--transition);
+}
+ 
+.pais-btn:hover {
+  background: rgba(139, 143, 150, 0.12);
+  color: var(--color-light);
+}
+ 
+.pais-btn.active {
+  background: linear-gradient(135deg, rgba(139, 143, 150, 0.22), rgba(110, 116, 125, 0.14));
+  color: var(--color-light);
+  font-weight: 600;
+  border-left: 2px solid #8b8f96;
+}
+ 
+.vinos-contenido {
+  min-height: 400px;
+}
+ 
+.pais-panel {
+  display: none;
+  animation: fadeInUp 0.3s ease;
+}
+ 
+.pais-panel.active {
+  display: block;
+}
+ 
+.pais-panel h3 {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 300;
+  margin-bottom: 24px;
+  color: var(--color-light);
+  letter-spacing: 0.03em;
+}
+ 
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+ 
+/* ========================= */
+/*   CARDS BODEGAS           */
+/* ========================= */
+.cards-bodegas {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 0;
+}
+ 
+.card-bodega {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 14px;
+  padding: 28px 16px 24px;
+  cursor: pointer;
+  border-radius: var(--radius);
+}
+ 
+.card-bodega h4 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--color-light);
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+ 
+.card-bodega p {
+  font-size: 0.78rem;
+  color: var(--color-gray);
+  font-weight: 300;
+  letter-spacing: 0.03em;
+  margin: 0;
+}
+ 
+/* Contenedor del logo de bodega en card */
+.bodega-logo-wrap {
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, rgba(212,175,55,0.08), rgba(123,17,35,0.12));
+  border: 1px solid var(--color-border-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+ 
+.bodega-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  padding: 10px;
+  display: block;
+  transition: var(--transition);
+}
+ 
+.card-bodega:hover .bodega-logo-wrap {
+  border-color: rgba(212,175,55,0.5);
+  background: linear-gradient(145deg, rgba(212,175,55,0.14), rgba(123,17,35,0.18));
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.12);
+}
+ 
+.card-bodega:hover .bodega-logo-img {
+  transform: scale(1.05);
+}
+
+.card-bodega[data-bodega="almanegra"] .bodega-logo-wrap {
+  background: #000;
+}
+
+.card-bodega[data-bodega="almanegra"] .bodega-logo-img {
+  object-fit: contain;
+  object-position: center 38%;
+  transform: scale(0.96);
+  padding: 2px;
+  filter: brightness(1.45) contrast(1.55);
+}
+
+.card-bodega[data-bodega="almanegra"]:hover .bodega-logo-img {
+  transform: scale(1.0);
+  filter: brightness(1.55) contrast(1.65);
+}
+
+.card-bodega[data-bodega="tikal"] .bodega-logo-wrap,
+.card-bodega[data-bodega="perse"] .bodega-logo-wrap {
+  background: radial-gradient(circle, rgba(255, 252, 247, 0.98) 0%, rgba(248, 241, 232, 0.98) 100%);
+}
+
+.card-bodega[data-bodega="tikal"] .bodega-logo-img,
+.card-bodega[data-bodega="perse"] .bodega-logo-img {
+  object-fit: contain;
+  object-position: center center;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.card-bodega[data-bodega="tikal"] .bodega-logo-img {
+  transform: scale(1.18);
+}
+
+.card-bodega[data-bodega="tikal"]:hover .bodega-logo-img {
+  transform: scale(1.24);
+}
+
+.card-bodega[data-bodega="perse"] .bodega-logo-img {
+  transform: scale(1.2);
+}
+
+.card-bodega[data-bodega="perse"]:hover .bodega-logo-img {
+  transform: scale(1.26);
+}
+ 
+/* ========================= */
+/*   FICHA BODEGA (inline)   */
+/* ========================= */
+#ficha-bodega {
+  animation: fadeInUp 0.35s ease;
+}
+ 
+.btn-volver-pais {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: 1px solid var(--color-border-gold);
+  color: var(--color-gray);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-bottom: 32px;
+}
+ 
+.btn-volver-pais:hover {
+  border-color: var(--color-secondary);
+  color: var(--color-secondary);
+  background: rgba(212, 175, 55, 0.05);
+}
+ 
+.bodega-ficha {
+  max-width: 820px;
+}
+ 
+.bodega-ficha-header {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 36px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--color-border);
+}
+ 
+/* Logo grande en ficha */
+.bodega-ficha-logo-wrap {
+  width: 120px;
+  height: 120px;
+  min-width: 120px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, rgba(212,175,55,0.1), rgba(123,17,35,0.15));
+  border: 1px solid var(--color-border-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+ 
+.bodega-ficha-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 14px;
+}
+ 
+.bodega-ficha-logo-fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+  text-align: center;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 14px;
+  line-height: 1.4;
+}
+ 
+.bodega-ficha-titulo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+ 
+.bodega-ficha-titulo h2 {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  font-weight: 300;
+  color: var(--color-light);
+  letter-spacing: 0.02em;
+  margin-bottom: 0;
+}
+ 
+.bodega-ficha-titulo h2::after {
+  display: none;
+}
+ 
+.bodega-ficha-region {
+  font-size: 0.85rem !important;
+  color: var(--color-gray) !important;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  margin: 0 !important;
+  max-width: 100% !important;
+}
+ 
+.bodega-ficha-descripcion {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 30px;
+}
+ 
+.bodega-ficha-descripcion p {
+  font-size: 0.95rem;
+  color: rgba(245, 240, 235, 0.75);
+  line-height: 1.85;
+  font-weight: 300;
+  max-width: 100%;
+}
+ 
+.bodega-ficha-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 0;
+}
+ 
+.ficha-tag {
+  display: inline-block;
+  padding: 5px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(139, 143, 150, 0.32);
+  background: rgba(139, 143, 150, 0.1);
+  color: #7d828a;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+ 
+@media (max-width: 900px) {
+  .vinos-layout {
+    grid-template-columns: 1fr;
+  }
+  .vinos-sidebar {
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    top: auto;
+    padding: 14px;
+  }
+  .sidebar-titulo { display: none; }
+  .pais-btn {
+    width: auto;
+    min-width: 110px;
+    text-align: center;
+    font-size: 0.82rem;
+  }
+}
+ 
+@media (max-width: 992px) {
+  .cards-bodegas {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+ 
+@media (max-width: 480px) {
+  .cards-bodegas {
+    grid-template-columns: 1fr;
+  }
+  .bodega-ficha-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+/* =========================
+   FIX ALINEACIÓN LOGOS
+========================= */
+ 
+/* --- Cards de bodegas (grilla) --- */
+.bodega-logo-wrap {
+  width: 100px;
+  height: 100px;
+  min-width: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, rgba(255, 252, 247, 0.98) 0%, rgba(248, 241, 232, 0.98) 100%);
+  border: 2px solid var(--color-border-gold);
+  transition: var(--transition);
+}
+ 
+.bodega-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  padding: 12px;
+  display: block;
+}
+
+/* --- Ficha individual de bodega --- */
+.bodega-ficha-logo-wrap {
+  width: 130px;
+  height: 130px;
+  min-width: 130px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 2px solid var(--color-border-gold);
+  flex-shrink: 0;
+}
+
+.bodega-ficha-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  padding: 16px;
+  display: block;
+}
+/* =========================
+   REFRESCO VISUAL PREMIUM
+========================= */
+:root {
+  --color-primary: #8e2038;
+  --color-primary-light: #c03b57;
+  --color-secondary: #c79a3b;
+  --color-dark: #1f1411;
+  --color-dark-card: #fffaf4;
+  --color-light: #271612;
+  --color-gray: #6f6257;
+  --color-border: rgba(65, 41, 33, 0.1);
+  --color-border-gold: rgba(199, 154, 59, 0.22);
+  --shadow-soft: 0 16px 40px rgba(65, 41, 33, 0.08);
+  --shadow-strong: 0 24px 70px rgba(65, 41, 33, 0.16);
+  --shadow-gold: 0 12px 32px rgba(199, 154, 59, 0.14);
+}
+
+body {
+  background:
+    radial-gradient(circle at top left, rgba(199, 154, 59, 0.14), transparent 26%),
+    radial-gradient(circle at top right, rgba(142, 32, 56, 0.14), transparent 24%),
+    linear-gradient(180deg, #fcf8f2 0%, #f4ede3 46%, #efe5d8 100%);
+  color: var(--color-light);
+}
+
+body::before {
+  opacity: 0.12;
+  mix-blend-mode: soft-light;
+}
+
+.header {
+  background: rgba(252, 247, 240, 0.82);
+  border-bottom: 1px solid rgba(65, 41, 33, 0.08);
+  box-shadow: 0 10px 30px rgba(65, 41, 33, 0.06);
+}
+
+.logo,
+.logo-fallback {
+  font-family: var(--font-display);
+  color: var(--color-light);
+  letter-spacing: 0.08em;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.menu-btn {
+  color: rgba(39, 22, 18, 0.76);
+}
+
+.menu-btn:hover {
+  color: var(--color-primary);
+}
+
+.menu-btn::after {
+  background: linear-gradient(90deg, var(--color-secondary), var(--color-primary));
+}
+
+.hero-slider {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.slide {
+  background: #1d1210;
+}
+
+.hero-overlay {
+  background:
+    linear-gradient(90deg, rgba(12, 7, 6, 0.62) 0%, rgba(12, 7, 6, 0.38) 42%, rgba(12, 7, 6, 0.2) 100%),
+    linear-gradient(180deg, rgba(18, 10, 8, 0.36), rgba(18, 10, 8, 0.5));
+}
+
+.hero-text-overlay {
+  max-width: 760px;
+  padding: 48px 42px;
+  border-radius: 28px;
+  background: linear-gradient(145deg, rgba(255, 250, 244, 0.12), rgba(255, 250, 244, 0.04));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.18);
+}
+
+.hero-text-overlay h2,
+.hero-text-overlay p {
+  color: #fffdf8;
+}
+
+.hero-text-overlay h2 {
+  text-wrap: balance;
+}
+
+.section {
+  position: relative;
+}
+
+.section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at top left, rgba(199, 154, 59, 0.08), transparent 24%),
+    radial-gradient(circle at bottom right, rgba(142, 32, 56, 0.05), transparent 26%);
+  pointer-events: none;
+}
+
+.section > .container {
+  position: relative;
+  z-index: 1;
+}
+
+.section h2,
+.pais-panel h3,
+.card h3,
+.about-location-card h3,
+.bodega-ficha-titulo h2 {
+  color: #271612;
+}
+
+.section p,
+.card p,
+.about-location-card p,
+.bodega-ficha-descripcion p,
+.footer-info p,
+.footer p,
+.pais-btn,
+.bodega-ficha-region,
+.card-bodega p {
+  color: var(--color-gray);
+}
+
+.section h2::after,
+.about-location-card::before,
+.btn,
+.active-dot,
+.hero-tag,
+.location-tag,
+.ficha-tag {
+  background: linear-gradient(90deg, rgba(139, 143, 150, 0.22), rgba(122, 127, 135, 0.18));
+}
+
+.section-alt {
+  background:
+    linear-gradient(180deg, rgba(255, 250, 244, 0.96), rgba(246, 238, 229, 0.96)),
+    linear-gradient(135deg, rgba(199, 154, 59, 0.12), rgba(142, 32, 56, 0.06));
+}
+
+.cards,
+.cards-bodegas {
+  gap: 26px;
+}
+
+.card,
+.about-location-card,
+.vinos-sidebar,
+.dropdown-content,
+.dropdown-subcontent,
+.bodega-ficha-logo-wrap,
+.bodega-ficha-header,
+.about-map,
+.footer {
+  background: rgba(255, 250, 244, 0.86);
+  border-color: rgba(65, 41, 33, 0.08);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(14px);
+}
+
+.card::before {
+  opacity: 0.8;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-strong);
+  background: linear-gradient(180deg, rgba(255, 250, 244, 0.98), rgba(246, 238, 229, 0.96));
+}
+
+.btn,
+.location-link,
+.menu-btn,
+.submenu-btn,
+.submenu-toggle-btn,
+.pais-btn,
+.slider-arrow,
+.slider-dot,
+.card,
+.card-bodega,
+.logo-link,
+.btn-volver-pais {
+  transition: transform 0.28s ease, box-shadow 0.28s ease, background 0.28s ease, color 0.28s ease, border-color 0.28s ease;
+}
+
+.btn {
+  color: #fffdf8;
+  box-shadow: 0 14px 30px rgba(142, 32, 56, 0.22);
+}
+
+.btn:hover {
+  box-shadow: 0 18px 40px rgba(142, 32, 56, 0.28);
+}
+
+.slider-arrow {
+  background: rgba(255, 250, 244, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.slider-arrow:hover {
+  background: rgba(199, 154, 59, 0.95);
+  color: #1e1410;
+}
+
+.slider-dot {
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.active-dot {
+  width: 32px;
+  border-radius: 999px;
+  transform: none;
+}
+
+.about-content {
+  align-items: stretch;
+}
+
+.about-map iframe {
+  filter: saturate(0.92) contrast(1.02);
+}
+
+.vinos-sidebar {
+  background: rgba(255, 250, 244, 0.92);
+}
+
+.pais-btn.active {
+  background: linear-gradient(135deg, rgba(142, 32, 56, 0.12), rgba(199, 154, 59, 0.16));
+  color: var(--color-primary);
+  border-left-color: var(--color-primary);
+}
+
+.card-bodega {
+  background: linear-gradient(180deg, rgba(255, 250, 244, 0.98), rgba(246, 238, 229, 0.92));
+}
+
+.bodega-logo-placeholder,
+.bodega-ficha-logo-fallback {
+  color: var(--color-primary);
+}
+
+.card-bodega .bodega-logo-placeholder {
+  font-size: 0.68rem;
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 0 8px;
+}
+
+.dropdown-content,
+.dropdown-subcontent {
+  background: rgba(255, 250, 244, 0.97);
+}
+
+.submenu-btn,
+.submenu-toggle-btn {
+  color: var(--color-light);
+}
+
+.submenu-btn:hover,
+.submenu-toggle-btn:hover {
+  background: rgba(199, 154, 59, 0.1);
+  color: var(--color-primary);
+}
+
+.footer {
+  border-top: 1px solid rgba(65, 41, 33, 0.08);
+}
+
+@media (max-width: 768px) {
+  .hero-text-overlay {
+    padding: 28px 20px;
+    border-radius: 22px;
+  }
+
+  .hero-text-overlay h2 {
+    font-size: 2.25rem;
+  }
+
+  .logo {
+    font-size: 1.45rem;
+  }
+}
+
+/* Panel backgrounds applied via JS (see funciones.js: aplicarFondosPaises) */
+.pais-panel-con-fondo {
+  border-radius: var(--radius);
+  overflow: hidden;
+  position: relative;
+  padding: 28px 28px 32px;
+}
+
+/* =========================
+   AJUSTE LOGOS HORIZONTALES
+========================= */
+/* Tikal: ratio 3.5:1 — casi sin padding para que se vea */
+.card-bodega[data-bodega="tikal"] .bodega-logo-img,
+#ficha-bodega [data-bodega="tikal"] .bodega-ficha-logo-img {
+  padding: 6px;
+}
+
+/* Ramos Pinto: ratio 1.9:1 */
+.card-bodega[data-bodega="ramospinto"] .bodega-logo-img {
+  padding: 8px;
+}
+.bodega-ficha-logo-img[alt="Ramos Pinto"] {
+  padding: 12px;
+}
+
+/* PerSe: ratio 1.65:1 */
+.card-bodega[data-bodega="perse"] .bodega-logo-img {
+  padding: 8px;
+}
+
+/* Alma Negra: fondo oscuro para que se lea bien */
+.card-bodega[data-bodega="almanegra"] .bodega-logo-wrap,
+.bodega-ficha-logo-wrap:has(img[alt="Alma Negra"]) {
+  background: #111;
+}
+.card-bodega[data-bodega="almanegra"] .bodega-logo-img {
+  padding: 8px;
+  filter: brightness(1.5) contrast(1.4);
+}
+
+/* =========================
+   KEN BURNS — HERO SLIDER
+========================= */
+@keyframes kenburns {
+  from { transform: scale(1.0) translate(0, 0); }
+  to   { transform: scale(1.10) translate(-1%, 0.5%); }
+}
+
+.slide.active-slide .hero-bg-img {
+  animation: kenburns 12s ease-out forwards;
+}

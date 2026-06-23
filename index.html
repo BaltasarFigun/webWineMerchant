@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wine Merchant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./estilos/styles.css">
+</head>
+ 
+<body>
+ 
+    <header class="header">
+        <div class="container nav">
+ 
+            <!-- LOGO: reemplazá logo-empresa.png con tu archivo -->
+            <a id="btnInicio" class="logo-link">
+                <img src="./img/logoW.jpg" alt="Wine Merchant" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <h1 class="logo logo-fallback" style="display:none;">Wine Merchant</h1>
+            </a>
+ 
+            <nav class="menu">
+                <button class="menu-btn" data-seccion="inicio">Inicio</button>
+                <button class="menu-btn" data-seccion="nosotros">Nosotros</button>
+                <button class="menu-btn" data-seccion="servicios">Servicios</button>
+                <button class="menu-btn" data-seccion="productos">Productos</button>
+                <button class="menu-btn" data-seccion="contacto">Contacto</button>
+            </nav>
+        </div>
+    </header>
+ 
+    <main class="main-content">
+ 
+        <!-- ==================== INICIO ==================== -->
+        <section id="inicio" class="content-section active-section">
+            <div class="hero hero-slider">
+ 
+                <div class="slide active-slide">
+                    <img src="./img/hero.jpg" alt="" aria-hidden="true" class="hero-bg-img img-slide-1">
+                    <div class="hero-overlay"></div>
+                    <div class="container hero-content-full">
+                        <div class="hero-text hero-text-overlay">
+                            <span class="hero-tag">Wine Merchant</span>
+                            <h2>Selección, distribución y experiencia en vinos premium</h2>
+                            <p>Una propuesta moderna, elegante y profesional para conectar productos, marcas y mercado.</p>
+                        </div>
+                    </div>
+                </div>
+ 
+                <div class="slide">
+                    <img src="./img/noemia.jpg" alt="" aria-hidden="true" class="hero-bg-img img-slide-2">
+                    <div class="hero-overlay"></div>
+                    <div class="container hero-content-full">
+                        <div class="hero-text hero-text-overlay">
+                            <span class="hero-tag">Calidad</span>
+                            <h2>Productos seleccionados para clientes exigentes</h2>
+                            <p>Trabajamos con etiquetas y propuestas que combinan imagen, identidad y valor comercial.</p>
+                        </div>
+                    </div>
+                </div>
+ 
+                <div class="slide">
+                    <img src="./img/almaNegra.jpg" alt="" aria-hidden="true" class="hero-bg-img img-slide-3">
+                    <div class="hero-overlay"></div>
+                    <div class="container hero-content-full">
+                        <div class="hero-text hero-text-overlay">
+                            <span class="hero-tag">Distribución</span>
+                            <h2>Conectamos marcas, producto y mercado</h2>
+                            <p>Importación, posicionamiento y distribución con una mirada moderna, sólida y orientada al crecimiento.</p>
+                        </div>
+                    </div>
+                </div>
+ 
+                <button class="slider-arrow slider-arrow-left" id="prevSlide" aria-label="Ir a la diapositiva anterior">&#10094;</button>
+                <button class="slider-arrow slider-arrow-right" id="nextSlide" aria-label="Ir a la siguiente diapositiva">&#10095;</button>
+ 
+                <div class="slider-dots">
+                    <button class="slider-dot active-dot" data-slide="0" aria-label="Ver diapositiva 1"></button>
+                    <button class="slider-dot" data-slide="1" aria-label="Ver diapositiva 2"></button>
+                    <button class="slider-dot" data-slide="2" aria-label="Ver diapositiva 3"></button>
+                </div>
+            </div>
+        </section>
+ 
+        <!-- ==================== NOSOTROS ==================== -->
+        <section id="nosotros" class="content-section">
+            <div class="section">
+                <div class="container">
+                    <h2>Nosotros</h2>
+                    <div class="about-content">
+                        <div class="about-text">
+                            <p>Somos una empresa dedicada a la importación, comercialización y distribución de vinos, spirits y productos seleccionados para el mercado. Trabajamos con enfoque comercial, logística eficiente y atención personalizada.</p>
+                            <div class="about-location-card">
+                                <span class="location-tag">Nuestra ubicación</span>
+                                <h3>Ocio Wine</h3>
+                                <p>Punta del Este, Maldonado, Uruguay</p>
+                                <a href="https://www.google.com/maps?q=-34.9343772,-54.9378431" target="_blank" class="location-link">Ver en Google Maps</a>
+                            </div>
+                        </div>
+                        <div class="about-map">
+                            <iframe src="https://www.google.com/maps?q=-34.9343772,-54.9378431&z=17&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+ 
+        <!-- ==================== SERVICIOS ==================== -->
+        <section id="servicios" class="content-section">
+            <div class="section section-alt">
+                <div class="container">
+                    <h2>Servicios</h2>
+                    <div class="cards">
+                        <article class="card">
+                            <div class="card-icon">◈</div>
+                            <h3>Importación</h3>
+                            <p>Gestión integral de productos y marcas para su ingreso al mercado.</p>
+                        </article>
+                        <article class="card">
+                            <div class="card-icon">◈</div>
+                            <h3>Distribución</h3>
+                            <p>Alcance comercial y logística orientada a una entrega eficiente.</p>
+                        </article>
+                        <article class="card">
+                            <div class="card-icon">◈</div>
+                            <h3>Asesoramiento</h3>
+                            <p>Acompañamiento comercial para selección de productos y posicionamiento.</p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+ 
+        <!-- ==================== PRODUCTOS ==================== -->
+        <section id="productos" class="content-section">
+            <div class="section">
+                <div class="container">
+                    <h2>Productos</h2>
+                    <p>Seleccioná un país para explorar las bodegas con las que trabajamos.</p>
+ 
+                    <div class="vinos-layout">
+ 
+                        <!-- SIDEBAR PAÍSES -->
+                        <aside class="vinos-sidebar">
+                            <p class="sidebar-titulo">Países</p>
+                            <button class="pais-btn active" data-pais="argentina">🇦🇷 Argentina</button>
+                            <button class="pais-btn" data-pais="chile">🇨🇱 Chile</button>
+                            <button class="pais-btn" data-pais="espana">🇪🇸 España</button>
+                            <button class="pais-btn" data-pais="italia">🇮🇹 Italia</button>
+                            <button class="pais-btn" data-pais="francia">🇫🇷 Francia</button>
+                            <button class="pais-btn" data-pais="portugal">🇵🇹 Portugal</button>
+                        </aside>
+ 
+                        <!-- CONTENIDO DINÁMICO -->
+                        <div class="vinos-contenido">
+ 
+                            <!-- ARGENTINA -->
+                            <div id="pais-argentina" class="pais-panel active">
+                                <h3>Argentina</h3>
+                                <div class="cards cards-bodegas">
+ 
+                                    <article class="card card-bodega" data-bodega="chacra">
+                                        <div class="bodega-logo-wrap">
+                                            <!-- Logo: reemplazá chacra.png con el archivo real -->
+                                            <img src="./img/bodegas/chacra.png" alt="Bodega Chacra" class="bodega-logo-img" onerror="this.style.display='none';">
+                                        </div>
+                                        <h4>Bodega Chacra</h4>
+                                        <p>Mainqué · Río Negro · Patagonia</p>
+                                    </article>
+ 
+                                    <article class="card card-bodega" data-bodega="noemia">
+                                        <div class="bodega-logo-wrap">
+                                            <!-- Logo: reemplazá noemia.png con el archivo real -->
+                                            <img src="./img/bodegas/noemia.png" alt="Noemía" class="bodega-logo-img" onerror="this.style.display='none';">
+                                        </div>
+                                        <h4>Bodega Noemía</h4>
+                                        <p>Mainqué · Río Negro · Patagonia</p>
+                                    </article>
+ 
+                                    <article class="card card-bodega" data-bodega="riccitelli">
+                                        <div class="bodega-logo-wrap">
+                                            <!-- Logo: reemplazá riccitelli.png con el archivo real -->
+                                            <img src="./img/bodegas/riccitelli.png" alt="Riccitelli" class="bodega-logo-img" onerror="this.style.display='none';">
+                                        </div>
+                                        <h4>Matías Riccitelli Wines</h4>
+                                        <p>Las Compuertas · Luján de Cuyo · Mendoza</p>
+                                    </article>
+ 
+                                    <article class="card card-bodega" data-bodega="padrillos">
+                                        <div class="bodega-logo-wrap">
+                                            <!-- Logo: reemplazá padrillos.png con el archivo real -->
+                                            <img src="./img/bodegas/padrillos.png" alt="Padrillos" class="bodega-logo-img" onerror="this.style.display='none';">
+                                        </div>
+                                        <h4>Finca de los Padrillos</h4>
+                                        <p>Valle de Uco · Mendoza</p>
+                                    </article>
+ 
+                                    <article class="card card-bodega" data-bodega="animal">
+                                        <div class="bodega-logo-wrap">
+                                            <!-- Logo: reemplazá animal.png con el archivo real -->
+                                            <img src="./img/bodegas/animal.png" alt="Animal" class="bodega-logo-img" onerror="this.style.display='none';">
+                                        </div>
+                                        <h4>Animal Natural Vineyards</h4>
+                                        <p>Vista Flores · Valle de Uco · Mendoza</p>
+                                    </article>
+ 
+                                    <article class="card card-bodega" data-bodega="almanegra">
+                                        <div class="bodega-logo-wrap">
+                                            <!-- Logo: reemplazá almanegra.png con el archivo real -->
+                                            <img src="./img/bodegas/almanegra.png" alt="Alma Negra" class="bodega-logo-img" onerror="this.style.display='none';">
+                                        </div>
+                                        <h4>Domaine Alma Negra</h4>
+                                        <p>Vista Flores · Valle de Uco · Mendoza</p>
+                                    </article>
+ 
+                                    <article class="card card-bodega" data-bodega="tikal">
+                                        <div class="bodega-logo-wrap">
+                                            <!-- Logo: reemplazá tikal.png con el archivo real -->
+                                            <img src="./img/bodegas/tikal.png" alt="Tikal" class="bodega-logo-img" onerror="this.style.display='none';">
+                                        </div>
+                                        <h4>Tikal Natural Vineyards</h4>
+                                        <p>Vista Flores · Valle de Uco · Mendoza</p>
+                                    </article>
+ 
+                                    <article class="card card-bodega" data-bodega="siesta">
+                                        <div class="bodega-logo-wrap">
+                                            <!-- Logo: reemplazá siesta.png con el archivo real -->
+                                            <img src="./img/bodegas/siesta.png" alt="Siesta" class="bodega-logo-img" onerror="this.style.display='none';">
+                                        </div>
+                                        <h4>Siesta en el Tahuantinsuyu</h4>
+                                        <p>Vista Flores · Valle de Uco · Mendoza</p>
+                                    </article>
+ 
+                                    <article class="card card-bodega" data-bodega="tukma">
+                                        <div class="bodega-logo-wrap">
+                                            <!-- Logo: reemplazá tukma.png con el archivo real -->
+                                            <img src="./img/bodegas/tukma.png" alt="Tukma" class="bodega-logo-img" onerror="this.style.display='none';">
+                                        </div>
+                                        <h4>Bodega Tukma</h4>
+                                        <p>Cafayate · Valle Calchaquí · Salta</p>
+                                    </article>
+ 
+                                    <article class="card card-bodega" data-bodega="perse">
+                                        <div class="bodega-logo-wrap">
+                                            <!-- Logo: reemplazá perse.png con el archivo real -->
+                                            <img src="./img/bodegas/perse.png" alt="PerSe" class="bodega-logo-img" onerror="this.style.display='none';">
+                                        </div>
+                                        <h4>PerSe Vines</h4>
+                                        <p>Gualtallary · Valle de Uco · Mendoza</p>
+                                    </article>
+ 
+                                    <article class="card card-bodega" data-bodega="escalahumana">
+                                        <div class="bodega-logo-wrap">
+                                            <!-- Logo: reemplazá escalahumana.png con el archivo real -->
+                                            <img src="./img/bodegas/escalahumana.png" alt="Escala Humana" class="bodega-logo-img" onerror="this.style.display='none';">
+                                        </div>
+                                        <h4>Escala Humana Wines</h4>
+                                        <p>Gualtallary · Tupungato · Mendoza</p>
+                                    </article>
+ 
+                                </div>
+                            </div><!-- /pais-argentina -->
+ 
+                            <!-- CHILE -->
+                            <div id="pais-chile" class="pais-panel">
+                                <h3>Chile</h3>
+                                <div class="cards cards-bodegas">
+ 
+                                    <article class="card card-bodega" data-bodega="demartino">
+                                        <div class="bodega-logo-wrap">
+                                            <!-- Logo: reemplazá demartino.png con el archivo real -->
+                                            <img src="./img/bodegas/demartino.png" alt="De Martino" class="bodega-logo-img" onerror="this.style.display='none';">
+                                        </div>
+                                        <h4>De Martino</h4>
+                                        <p>Isla de Maipo · Chile</p>
+                                    </article>
+ 
+                                </div>
+                            </div><!-- /pais-chile -->
+ 
+                            <!-- ESPAÑA -->
+                            <div id="pais-espana" class="pais-panel">
+                                <h3>España</h3>
+                                <div class="cards cards-bodegas">
+ 
+                                    <article class="card card-bodega" data-bodega="cuzcurrita">
+                                        <div class="bodega-logo-wrap">
+                                            <!-- Logo: reemplazá cuzcurrita.png con el archivo real -->
+                                            <img src="./img/bodegas/cuzcurrita.png" alt="Castillo de Cuzcurrita" class="bodega-logo-img" onerror="this.style.display='none';">
+                                        </div>
+                                        <h4>Castillo de Cuzcurrita</h4>
+                                        <p>Rioja Alta · La Rioja · España</p>
+                                    </article>
+ 
+                                </div>
+                            </div><!-- /pais-espana -->
+ 
+                            <!-- ITALIA -->
+                            <div id="pais-italia" class="pais-panel">
+                                <h3>Italia</h3>
+                                <div class="cards cards-bodegas">
+ 
+                                    <article class="card card-bodega" data-bodega="casenuove">
+                                        <div class="bodega-logo-wrap">
+                                            <!-- Logo: reemplazá casenuove.png con el archivo real -->
+                                            <img src="./img/bodegas/casenuove.png" alt="Tenuta Casenuove" class="bodega-logo-img" onerror="this.style.display='none';">
+                                        </div>
+                                        <h4>Tenuta Casenuove</h4>
+                                        <p>Panzano in Chianti · Toscana · Italia</p>
+                                    </article>
+ 
+                                </div>
+                            </div><!-- /pais-italia -->
+ 
+                            <!-- FRANCIA -->
+                            <div id="pais-francia" class="pais-panel">
+                                <h3>Francia</h3>
+                                <div class="cards cards-bodegas">
+ 
+                                    <article class="card card-bodega" data-bodega="peyrassol">
+                                        <div class="bodega-logo-wrap">
+                                            <!-- Logo: reemplazá peyrassol.png con el archivo real -->
+                                            <img src="./img/bodegas/peyrassol.png" alt="Château Peyrassol" class="bodega-logo-img" onerror="this.style.display='none';">
+                                        </div>
+                                        <h4>Château Peyrassol</h4>
+                                        <p>Côtes de Provence · Francia</p>
+                                    </article>
+ 
+                                    <article class="card card-bodega" data-bodega="bonpas">
+                                        <div class="bodega-logo-wrap">
+                                            <!-- Logo: reemplazá bonpas.png con el archivo real -->
+                                            <img src="./img/bodegas/bonpas.png" alt="Bonpas" class="bodega-logo-img" onerror="this.style.display='none';">
+                                        </div>
+                                        <h4>Bonpas</h4>
+                                        <p>Côtes-du-Rhône · Aviñón · Francia</p>
+                                    </article>
+ 
+                                    <article class="card card-bodega" data-bodega="malescasse">
+                                        <div class="bodega-logo-wrap">
+                                            <!-- Logo: reemplazá malescasse.png con el archivo real -->
+                                            <img src="./img/bodegas/malescasse.png" alt="Château Malescasse" class="bodega-logo-img" onerror="this.style.display='none';">
+                                        </div>
+                                        <h4>Château Malescasse</h4>
+                                        <p>Haut-Médoc · Bordeaux · Francia</p>
+                                    </article>
+ 
+                                </div>
+                            </div><!-- /pais-francia -->
+ 
+                            <!-- PORTUGAL -->
+                            <div id="pais-portugal" class="pais-panel">
+                                <h3>Portugal</h3>
+                                <div class="cards cards-bodegas">
+                                    <article class="card card-bodega" data-bodega="ramospinto">
+                                        <div class="bodega-logo-wrap">
+                                            <img src="./img/bodegas/ramospinto.png" alt="Ramos Pinto" class="bodega-logo-img" onerror="this.style.display='none';">
+                                        </div>
+                                        <h4>Ramos Pinto</h4>
+                                        <p>Douro · Portugal</p>
+                                    </article>
+                                </div>
+                            </div><!-- /pais-portugal -->
+ 
+                            <!-- ======================== -->
+                            <!--   FICHAS DE BODEGAS     -->
+                            <!-- (ocultas, aparecen al   -->
+                            <!--  hacer click en bodega) -->
+                            <!-- ======================== -->
+                            <div id="ficha-bodega" class="ficha-bodega-panel" style="display:none;">
+                                <button class="btn-volver-pais" id="btnVolverPais">← Volver</button>
+                                <div id="ficha-bodega-contenido"></div>
+                            </div>
+ 
+                        </div><!-- /vinos-contenido -->
+                    </div><!-- /vinos-layout -->
+                </div>
+            </div>
+        </section>
+ 
+        <!-- ==================== CONTACTO ==================== -->
+        <section id="contacto" class="content-section">
+            <div class="section section-alt">
+                <div class="container">
+                    <h2>Contacto</h2>
+                    <p>¿Querés trabajar con nosotros o recibir más información? Escribinos al +598 94 120 302 o dejamos tu consulta:</p>
+                    <form class="contact-form">
+                        <label class="sr-only" for="contacto-nombre">Nombre</label>
+                        <input id="contacto-nombre" type="text" placeholder="Nombre" required>
+                        <label class="sr-only" for="contacto-email">Correo electrónico</label>
+                        <input id="contacto-email" type="email" placeholder="Correo electrónico" required>
+                        <label class="sr-only" for="contacto-mensaje">Tu mensaje</label>
+                        <textarea id="contacto-mensaje" placeholder="Tu mensaje" rows="5" required></textarea>
+                        <button type="submit" class="btn">Enviar</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+ 
+    </main>
+ 
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-info">
+                <p>Wine Merchant: Distribuidores Internacionales</p>
+                <p>info@winemerchant.com</p>
+                <p>+598 94 120 302</p>
+                <p>Juan Jose Severino, Punta del Este</p>
+                <p>Maldonado, Uruguay</p>
+            </div>
+            <p>&copy; 2026 Wine Merchant. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+ 
+    <script src="./funciones/funciones.js?v=3"></script>
+</body>
+</html>
+ 
